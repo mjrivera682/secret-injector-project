@@ -27,7 +27,7 @@ jobs:
         </script>|' src/index.html
 
     - name: Upload HTML artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: secret-html
         path: src/index.html
