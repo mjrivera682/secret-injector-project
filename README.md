@@ -24,6 +24,14 @@ The main purpose of this project is to showcase how to securely handle secrets i
 3. **Push changes to trigger the workflow:**
    - Make any changes to the repository and push them to the main branch to trigger the GitHub Actions workflow.
 
+4. **Push the repository to GitHub:**
+   ```
+   git add .
+   git commit -m "Initial commit"
+   git remote add origin https://github.com/yourusername/secret-injector-project.git
+   git push -u origin main
+   ```
+
 ## Usage
 
 1. Open `src/index.html` in a web browser.
