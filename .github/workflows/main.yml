@@ -1,0 +1,33 @@
+name: Inject Secret into HTML
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Inject secret into HTML
+      run: |
+        sed -i 's|<!-- SECRET_PLACEHOLDER -->|<script>
+          document.addEventListener("DOMContentLoaded", function() {
+            const secret = "${{ secrets.MY_SECRET }}";
+            document.getElementById("revealButton").addEventListener("click", function() {
+              const userInput = document.getElementById("secretInput").value;
+              if (userInput === "secret") {
+                document.getElementById("secret").innerText = secret;
+              } else {
+                document.getElementById("secret").innerText = "Incorrect input";
+              }
+            });
+          });
+        </script>|' src/index.html
+
+    - name: Upload HTML artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: secret-html
+        path: src/index.html
